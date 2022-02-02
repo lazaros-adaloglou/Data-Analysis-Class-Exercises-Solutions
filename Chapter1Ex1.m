@@ -27,6 +27,6 @@ plot(k, P);
 xlabel('n');
 ylabel('P(X=2)');
 disp('-----------------------------------------------------------------------------------------------------------------------');
-disp('We ascertain that as n tends to infinity, the Probability of a Coin Toss being <Heads> is close to 0.5.');
+disp('We ascertain that as <n> tends to infinity, the Probability of a Coin Toss being <Heads> is close to 0.5.');
 disp('-----------------------------------------------------------------------------------------------------------------------');
 %-------------------------------------------------------------------------------------------------------------------------------
