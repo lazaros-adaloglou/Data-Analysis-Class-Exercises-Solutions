@@ -1,0 +1,157 @@
+\documentclass{article}
+\usepackage[utf8]{inputenx}
+\usepackage[english,greek]{babel}
+\usepackage[T2A]{fontenc}
+\usepackage{graphicx}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{array}
+\newcolumntype{P}[1]{>{\centering\arraybackslash}p{#1}}
+\newcolumntype{M}[1]{>{\centering\arraybackslash}m{#1}}
+\usepackage{amsthm}
+% limits underneath
+\DeclareMathOperator*{\argmaxA}{arg\,max} % Jan Hlavacek
+\DeclareMathOperator*{\argmaxB}{argmax}   % Jan Hlavacek
+\DeclareMathOperator*{\argmaxC}{\arg\max}   % rbp
+\newcommand{\argmaxD}{\arg\!\max} % AlfC
+\newcommand{\argmaxE}{\mathop{\mathrm{argmax}}}          % ASdeL
+\newcommand{\argmaxF}{\mathop{\mathrm{argmax}}\limits}   % ASdeL
+\newtheorem{theorem}{Theorem}
+\usepackage{algorithm}
+\usepackage[noend]{algpseudocode}
+\graphicspath{{./Images/}}
+\hyphenation{computational-ly}
+
+%-Start-of-Report--------------------------------------------------------------------
+\begin{document}
+\selectlanguage{english}
+
+%-Cover-Page-------------------------------------------------------------------------
+\begin{titlepage}
+
+\centering
+
+{\huge \selectlanguage{english}Data Analysis}
+\vspace{2cm}
+
+{\Large \textit{\textbf{\selectlanguage{english}Class Exercises - Solutions}}}
+\vspace{2cm}
+
+{\large \selectlanguage{english}Adaloglou Lazaros}
+
+\vfill
+{\itshape Aristotle University of Thessaloniki}
+
+\end{titlepage}
+
+%-Table-of-Contents------------------------------------------------------------------
+\tableofcontents
+
+%-Introduction-----------------------------------------------------------------------
+\section{Intro} \label{th1}
+
+Data Analysis in Matlab.
+
+\section{Probability and Random Variables} \label{th2}
+
+\subsection{Exercise 1}
+Confirm the Definition of Probability as the limit of relative frequency for repetition count tending to infinity.
+Simulate the toss of a coin $n$ times using the random number generator, either from a uniform discrete distribution (two-value for \textit{heads} and \textit{tails}), or from a uniform continuous distribution in the interval [0,1] using a threshold of 0.5 (e.g. a number smaller than 0.5 is \textit{heads} and a number bigger than 0.5 is \textit{tails}). Repeat the experiment for increasing $n$ and calculate every time the ratio of \textit{tails} in $n$ repetitions. Plot the respective graph of the ratio for different $n$. For the creation of random numbers the \textit{rand} or \textit{unidrnd} functions can be used.
+
+\subsection{Exercise 2} 
+
+
+\subsection{Exercise 3} 
+
+
+\subsection{Exercise 4}
+
+
+\subsection{Exercise 5}
+
+
+\subsection{Exercise 6}
+
+
+\section{Elements of Statistics} \label{th3}
+
+\subsection{Exercise 1}
+
+\vspace{2mm}
+
+\begin{center}
+    {\textbf{\underline{Solution}}}
+\end{center}
+\vspace{2mm}
+
+\noindent\textbf{a)} As stated, $\{x_1, x_2,\dots, x_n\}$ are independent observations. Also the Cumulative Distribution Function (cdf) is known
+
+\begin{equation}
+    F_X(x;\lambda)=\int_{-\infty}^{x}{f_X(u;\lambda)du}=\int_{-\infty}^{x}{e^{-\lambda}\frac{\lambda^{u}}{u!}du}.\nonumber
+\end{equation}
+
+\noindent The Likelihood Function is
+
+\begin{equation}
+L(x_1, x_2,\dots, x_n;\lambda)=f_X(x_1;\lambda)f_X(x_2;\lambda)\dots f_X(x_n;\lambda)\nonumber
+\end{equation}
+
+\noindent So the Maximum Likelihood Estimator for lambda is the $\widehat{\lambda}$ that maximizes the Likelihood Function, thus
+
+\begin{equation}
+\widehat{\lambda} = \argmaxA_\lambda L(x_1, x_2,\dots, x_n;\lambda)\nonumber
+\end{equation}
+
+\noindent Now we take the natural logarithm ($\log_e$) of the Likelihood Function. We do this because the natural logarithm is a monotonically increasing function. This ensures that the maximum value of the log of the probability occurs at the same point as the original probability function. Now this can be differentiated to find the maximum.
+
+\begin{equation}\label{der}
+\frac{\partial \log_e L(x_1, x_2,\dots, x_n;\lambda)}{\partial \lambda}=0
+\end{equation}
+
+\noindent First we elaborate on $I=\log_e L(x_1, x_2,\dots, x_n;\lambda)$
+
+\begin{equation}
+I=\log_e (f_X(x_1;\lambda)f_X(x_2;\lambda)\dots f_X(x_n;\lambda))\nonumber
+\end{equation}
+
+\begin{equation}
+=\log_e (e^{-\lambda} \frac{\lambda^{x_1}}{x_1!}e^{-\lambda} \frac{\lambda^{x_2}}{x_2!}\dots e^{-\lambda} \frac{\lambda^{x_n}}{x_n!})\nonumber
+\end{equation}
+
+\begin{equation}
+=\log_e (e^{-n\lambda}\frac{\lambda^{\sum_{i=1}^n x_1}}{\prod_{i=1}^n x_1!})\nonumber
+\end{equation}
+
+\begin{equation}
+=\log_e(e^{-n\lambda})+\log_e(\lambda^{\sum_{i=1}^n x_1})-\log_e{\prod_{i=1}^n x_1!}\nonumber
+\end{equation}
+
+\begin{equation}
+=-n\lambda+\left(\sum_{i=1}^n x_1\right)\log_e(\lambda)-\log_e{\prod_{i=1}^n x_1!}\nonumber
+\end{equation}
+
+\noindent Substituting in (\ref{der}) we have
+
+\begin{equation}
+\frac{\partial\left(-n\lambda+\left(\sum_{i=1}^n x_1\right)\log_e(\lambda)-\log_e{\prod_{i=1}^n x_1!}\right)}{\partial \lambda}=0\nonumber
+\end{equation}
+
+\begin{equation}
+-n+\frac{1}{\widehat{\lambda}\log_e e}\sum_{i=1}^n x_1=0\nonumber
+\end{equation}
+
+\begin{equation}
+\sum_{i=1}^n x_1=n\widehat{\lambda}\nonumber
+\end{equation}
+
+\begin{equation}
+\widehat{\lambda}=\frac{1}{n}\sum_{i=1}^n x_1\nonumber
+\end{equation}
+
+\noindent So the Maximum Likelihood Estimator of $\lambda$ is the sample mean
+
+\begin{equation}
+\widehat{\lambda}=\overline{x}\nonumber
+\end{equation}
+
+\end{document}
